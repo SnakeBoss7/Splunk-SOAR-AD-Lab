@@ -1,10 +1,15 @@
 <Sysmon schemaversion="4.90">
-  <!-- Hashing algorithms that can be used are md5,sha1,sha256,imphash or * for all,
-  more than once can be specified separated by using comas -->
-  <HashAlgorithms>sha256;md5</HashAlgorithms>
-  <!-- Checking for signature revocation for drivers. -->
-  <CheckRevocation/>
+  <!-- Hashing algorithms that can be used are md5, sha1, sha256, imphash, or * for all -->
+  <HashAlgorithms>sha256,md5</HashAlgorithms>
+
+  <!-- Event filtering rules -->
   <EventFiltering>
-    
+    <ProcessCreate onmatch="include">
+      <Image condition="end with">notepad.exe</Image>
+    </ProcessCreate>
+<ProcessCreate onmatch="exclude">
+    <Image condition="end with">unsecapp.exe</Image>
+    <Image condition="end with">svchost.exe</Image>
+    </ProcessCreate>
   </EventFiltering>
 </Sysmon>
