@@ -32,3 +32,24 @@ To view the **default configuration** settings that Sysmon is currently using, u
     * `(-c` is the flag for reviewing the current configuration.)
 
 ![Sysmon Default Configuration Review](Img/sysmon1.png)
+
+
+
+## ⚙️ Sysmon default log location 
+
+**win+x - > eventvwr.msc**
+
+```
+Event Viewer (Local)
+ └─ Applications and Services Logs
+     └─ Microsoft
+         └─ Windows
+             └─ Sysmon
+                 └─ Operational
+```
+
+* ** command:**
+    * `Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" | Select-Object -First 5`
+
+
+
