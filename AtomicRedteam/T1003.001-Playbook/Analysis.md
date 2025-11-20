@@ -1,5 +1,6 @@
 # T1003.001 - OS Credential Dumping / LSASS Memory Dumping  
 
+
 ## What Is This Attack?
 
 Attackers dump the memory of the LSASS process to steal credentials 
@@ -32,6 +33,15 @@ stored in RAM. LSASS (Local Security Authority Subsystem Service) holds:
 
 
 ## Detection Summary
+
+**All methods require:**
+1. Accessing LSASS process memory
+2. Creating a .dmp file
+
+**We detect by monitoring:**
+- EventID 10: Process accessing lsass.exe
+- EventID 11: .dmp file creation
+- EventID 1: Suspicious process execution
 
 # 🔑 LSASS Dumping — Important Hex Values & Their Meaning
 
@@ -101,17 +111,7 @@ These are the **only four hex access values you actually need to remember** when
 
 ---
 
-Let me know if you want this turned into **PDF**, **notes for SOC interview**, or **detailed explanation** of each flag!
 
-
-**All methods require:**
-1. Accessing LSASS process memory
-2. Creating a .dmp file
-
-**We detect by monitoring:**
-- EventID 10: Process accessing lsass.exe
-- EventID 11: .dmp file creation
-- EventID 1: Suspicious process execution
 
  With Defender ENABLED:
 
