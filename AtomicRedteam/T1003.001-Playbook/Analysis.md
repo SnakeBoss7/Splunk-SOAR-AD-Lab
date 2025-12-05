@@ -43,13 +43,13 @@ stored in RAM. LSASS (Local Security Authority Subsystem Service) holds:
 - EventID 11: .dmp file creation
 - EventID 1: Suspicious process execution
 
-# 🔑 LSASS Dumping — Important Hex Values & Their Meaning
+#  LSASS Dumping — Important Hex Values & Their Meaning
 
 These are the **only four hex access values you actually need to remember** when analyzing LSASS access attempts (EDR/SIEM/SOC perspective).
 
 ---
 
-## ✅ 0x1410  
+##  0x1410  
 ### **Meaning:**  
 `PROCESS_QUERY_INFORMATION` + `PROCESS_VM_READ`
 
@@ -61,7 +61,7 @@ These are the **only four hex access values you actually need to remember** when
 
 ---
 
-## ✅ 0x1000  
+##  0x1000  
 ### **Meaning:**  
 `only allows querying basic process information, not reading memory or extracting credentials`
 
@@ -70,7 +70,7 @@ These are the **only four hex access values you actually need to remember** when
 - services.exe
 ---
 
-## ✅ 0x1010  
+##  0x1010  
 ### **Meaning:**  
 `PROCESS_QUERY_LIMITED_INFO` + `PROCESS_VM_READ`
 
@@ -79,11 +79,11 @@ These are the **only four hex access values you actually need to remember** when
 - Nanodump  
 - Most **modern** LSASS dumping tools  
 
-> 🔥 *This is the most common value used by stealthy/minimal-detection dumpers.*
+>  *This is the most common value used by stealthy/minimal-detection dumpers.*
 
 ---
 
-## 🚨 0x1FFFFF  
+##  0x1FFFFF  
 ### **Meaning:**  
 `PROCESS_ALL_ACCESS` (FULL CONTROL)
 
@@ -92,11 +92,11 @@ These are the **only four hex access values you actually need to remember** when
 - Some EDRs (when scanning LSASS)  
 - PplDump (when exploiting PPL bypass)
 
-> ⚠️ *Very suspicious if seen from a random process.*
+>  *Very suspicious if seen from a random process.*
 
 ---
 
-## 🟡 0x40  
+##  0x40  
 ### **Meaning:**  
 `PROCESS_QUERY_INFORMATION` **only**
 
@@ -105,27 +105,27 @@ These are the **only four hex access values you actually need to remember** when
 - `tasklist`  
 - Many harmless system info tools
 
-> ✔️ Safe to ignore — too common and noisy.
+>  Safe to ignore — too common and noisy.
 
 ---
 
-### 🎯 Summary Table
+###  Summary Table
 
 | Hex Value | Meaning | Tools / Behavior | Risk |
 |----------|---------|------------------|------|
-| **0x1410** | Query Info + VM Read | ProcDump, comsvcs, old Mimikatz | 🔥 High |
-| **0x1010** | Limited Query + VM Read | Nanodump, Out-Minidump, modern dumpers | 🔥 High |
-| **0x1FFFFF** | Full Access | Task Manager, PplDump, some EDRs | 🚨 Very High |
-| **0x40** | Query Only | wmic, tasklist | 🟢 Safe/Noisy |
+| **0x1410** | Query Info + VM Read | ProcDump, comsvcs, old Mimikatz |  High |
+| **0x1010** | Limited Query + VM Read | Nanodump, Out-Minidump, modern dumpers |  High |
+| **0x1FFFFF** | Full Access | Task Manager, PplDump, some EDRs |  Very High |
+| **0x40** | Query Only | wmic, tasklist |  Safe/Noisy |
 
 ---
 
 
 
- With Defender ENABLED:
+## With Defender ENABLED:
 
 EventID 1: ✅ (maybe - depends on if it starts)
-EventID 10: ✅ (you're seeing this)
+EventID 10: ✅ 
 EventID 11: ❌ (blocked before file created)
 
 With Defender DISABLED:

@@ -3,7 +3,7 @@
 This guide explains the **logic** and **concepts** behind connecting your Python SOAR script to Jira. This is not a copy-paste script, but a blueprint for how to build it.
 
 ## 1. The Bridge: `jira` Python Library
-
+f
 To talk to Jira, we use a standard Python library simply called `jira`. It handles all the complex API calls for us.
 
 **Concept**:

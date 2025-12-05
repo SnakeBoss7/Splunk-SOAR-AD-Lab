@@ -1,4 +1,4 @@
-<Sysmon schemaversion="4.92">
+<Sysmon schemaversion="4.90">
   <HashAlgorithms>sha256,imphash</HashAlgorithms>
   
   <EventFiltering>
@@ -18,7 +18,7 @@
       </ProcessCreate>
       
       <!-- rundll32 with comsvcs.dll -->
-      <ProcessCreate onmatch="include">
+      <ProcessCreate onmatch="include" >
         <CommandLine condition="contains">comsvcs.dll,MiniDump</CommandLine>
         <CommandLine condition="contains">comsvcs.dll,minidump</CommandLine>
 
@@ -26,7 +26,7 @@
       </ProcessCreate>
       
       <!-- ProcDump detecting LSASS -->
-<ProcessCreate onmatch="include">
+<ProcessCreate onmatch="include" >
   <Image condition="end with">procdump.exe</Image>
   <CommandLine condition="contains">lsass</CommandLine>
 </ProcessCreate>
@@ -102,7 +102,7 @@
     <RuleGroup name="T1003.001_DumpFiles" groupRelation="or">
       
       <!-- PowerShell creating .dmp -->
-      <FileCreate onmatch="include">
+      <FileCreate onmatch="include" >
         <TargetFilename condition="end with">.dmp</TargetFilename>
 
       </FileCreate>

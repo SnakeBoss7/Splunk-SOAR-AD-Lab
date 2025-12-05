@@ -45,6 +45,12 @@ graph TD
     end
 ```
 
+```Mermaid
+graph TD
+    A[Windows 10 Endpoint] -->|Sysmon Events| B[Splunk Universal Forwarder]
+    B -->|Forwards Logs| C[Splunk Indexer]
+    C -->|Search + Validate| D[Initial SPL Queries / Dashboards]
+```
 ## System Architecture & Components
 
 ### 1. Telemetry & Detection (Sysmon + Splunk)

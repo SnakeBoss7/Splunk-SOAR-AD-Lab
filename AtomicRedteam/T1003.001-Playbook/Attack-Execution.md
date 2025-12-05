@@ -1,4 +1,4 @@
-# 🛡️ T1003.001 Attack Simulation Guide
+#  T1003.001 Attack Simulation Guide
 
 ## Test 1: ProcDump
 
@@ -62,13 +62,18 @@ Invoke-AtomicTest T1003.001 -TestNumbers 8 -Confirm:$false
 
 ### 1️⃣ EventCode 10 - Process Access to LSASS
 
-##ALERTS SPl for splunk
+## ALERTS SPl for splunk
 
 **Purpose:** Detect any process attempting to read LSASS memory
 ```spl
 index=sysmon sourcetype=Win10 EventCode=10 TargetImage="*lsass.exe"
 | stats count by SourceImage, SourceUser, GrantedAccess
-| where GrantedAccess IN ("0x1010", "0x1410", "0x1438")
+```
+**Purpose:** Detect any process with granted access to LSASS memory
+```spl
+index=sysmon sourcetype=Win10 EventCode=10 TargetImage="*lsass.exe"
+| stats count by SourceImage, SourceUser, GrantedAccess
+| where GrantedAccess IN ("0x1010", "0x1410", "0x1438","0x1FFFFF")
 ```
 
 ### 2️⃣ EventCode 11 - Dump File Creation

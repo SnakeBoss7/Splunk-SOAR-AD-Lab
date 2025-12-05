@@ -1,10 +1,10 @@
-# 💻 Splunk Universal Forwarder Installation and Configuration Guide
+#  Splunk Universal Forwarder Installation and Configuration Guide
 
 The **Splunk Universal Forwarder (UF)** is a lightweight agent designed to efficiently forward data (logs, metrics) from local systems to a **Splunk Enterprise** instance or **Splunk Cloud** deployment.
 
 ---
 
-## ⬇️ Prerequisites and Downloads
+## ⬇ Prerequisites and Downloads
 
 ###  Splunk Universal Forwarder
 
@@ -13,7 +13,7 @@ The **Splunk Universal Forwarder (UF)** is a lightweight agent designed to effic
 
 ---
 
-## 🚀 Installation and Initial Setup
+##  Installation and Initial Setup
 
 The installation process involves setting up the Forwarder's credentials and pointing it to the Splunk Indexer.
 
@@ -27,7 +27,7 @@ The installation process involves setting up the Forwarder's credentials and poi
 
 ---
 
-## ⚙️ Configuring Data Inputs (`inputs.conf`)
+##  Configuring Data Inputs (`inputs.conf`)
 
 To tell the Universal Forwarder **what data to send** (e.g., Sysmon logs), you must configure the `inputs.conf` file.
 
