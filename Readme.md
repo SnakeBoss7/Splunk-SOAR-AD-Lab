@@ -2,49 +2,6 @@
 
 Windows Endpoint Telemetry System using Sysmon + Splunk Indexer + UF + Generating Alerts + SPL Queries + Dashboards + Atomic Red Team Attacks + Writing Sysmon XML Rules + Python SOAR Mini-Clone.
 
-## Project Workflow
-
-```mermaid
-graph TD
-    %% Global Styles
-    classDef phase1 fill:#ffcccc,stroke:#333,stroke-width:2px,color:black;
-    classDef phase2 fill:#ccffcc,stroke:#333,stroke-width:2px,color:black;
-    classDef phase3 fill:#ccccff,stroke:#333,stroke-width:2px,color:black;
-    classDef phase4 fill:#ffffcc,stroke:#333,stroke-width:2px,color:black;
-
-    subgraph Phase1 [Phase 1: Attack Simulation]
-        direction TB
-        A[Atomic Red Team]:::phase1 -->|Executes TTPs| B(Windows Endpoint):::phase1
-    end
-
-    subgraph Phase2 [Phase 2: Detection Engineering]
-        direction TB
-        B -->|Sysmon Event| C[Splunk UF]:::phase2
-        C -->|Forward Data| D[Splunk Indexer]:::phase2
-        D -->|SPL & XML Rules| E{Alert Triggered?}:::phase2
-    end
-
-    subgraph Phase3 [Phase 3: Python SOAR Mini-Clone]
-        direction TB
-        E -->|Yes: JSON Payload| F[Python Script]:::phase3
-        F -->|Extract Artifacts| G(IP / Hash / URL):::phase3
-        G -->|API Lookup| H[Enrichment Modules]:::phase3
-        
-        H -.-> VT[VirusTotal]:::phase3
-        H -.-> SH[Shodan]:::phase3
-        H -.-> AB[AbuseIPDB]:::phase3
-        
-        H -->|Enriched Data| I[Severity Scoring Logic]:::phase3
-        I -->|Context Request| J[LLM Integration]:::phase3
-        J -->|Returns Analysis| K[Report Builder]:::phase3
-    end
-
-    subgraph Phase4 [Phase 4: Response]
-        direction TB
-        K -->|Create Ticket| L[Jira Ticket]:::phase4
-    end
-```
-
 ## System Architecture & Components
 
 ### 1. Telemetry & Detection (Sysmon + Splunk)
@@ -55,6 +12,7 @@ The foundation of the project is robust telemetry and detection.
     *   [Windows UF Installation](Window/SplunkUF/Installtion.md)
     *   [Splunk Custom Alert](Linux/Splunk/customAlert.md)
 
+![Alt text](image.png)
 ### 2. Python SOAR Mini-Clone
 A custom automation pipeline that processes alerts triggered by Splunk.
 
