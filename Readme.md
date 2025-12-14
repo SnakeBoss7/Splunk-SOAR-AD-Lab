@@ -12,7 +12,7 @@ The foundation of the project is robust telemetry and detection.
     *   [Windows UF Installation](Window/SplunkUF/Installtion.md)
     *   [Splunk Custom Alert](Linux/Splunk/customAlert.md)
 
-![Alt text](image.png)
+![Alt text](Image.png)
 ### 2. Python SOAR Mini-Clone
 A custom automation pipeline that processes alerts triggered by Splunk.
 
